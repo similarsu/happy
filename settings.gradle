@@ -1,1 +1,3 @@
 rootProject.name = 'happy'
+include 'happy-concurrent'
+
