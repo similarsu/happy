@@ -1,17 +1,17 @@
-package net.similarsu.happy.concurrent;
+package net.similarsu.happy.concurrency;
 
 import net.similarsu.happy.core.annotations.NoThreadSafe;
 
 import java.util.concurrent.*;
 
 /**
- * a tools for mock concurrent environment
+ * a tools for mock concurrency environment
  * @author similarsu(similarsu@qq.com)
  * @version 1.0.0
  * @since 2018
  */
 @NoThreadSafe
-public class ConcurrentMock {
+public class ConcurrencyMock {
     private static int clientNums = 2000;
     private static int threadNums = 20;
     private static int count = 0 ;

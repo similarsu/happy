@@ -1,4 +1,4 @@
 rootProject.name = 'happy'
-include 'happy-concurrent'
+include 'happy-concurrency'
 include 'happy-core'
 
