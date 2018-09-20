@@ -1,5 +1,6 @@
 package net.similarsu.happy.concurrency;
 
+import lombok.extern.slf4j.Slf4j;
 import net.similarsu.happy.core.annotations.NoThreadSafe;
 
 import java.util.concurrent.*;
@@ -11,6 +12,7 @@ import java.util.concurrent.*;
  * @since 2018
  */
 @NoThreadSafe
+@Slf4j
 public class ConcurrencyMock {
     private static int clientNums = 2000;
     private static int threadNums = 20;
@@ -26,14 +28,14 @@ public class ConcurrencyMock {
                     add();
                     semaphore.release();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    log.error("{}",e);
                 }
                 countDownLatch.countDown();
             });
         }
         countDownLatch.await();
         executor.shutdown();
-        System.out.println(count);
+        log.info("count={}",count);
 
     }
 
