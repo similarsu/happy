@@ -1,4 +1,5 @@
 rootProject.name = 'happy'
 include 'happy-concurrency'
 include 'happy-core'
+include 'happy-jdk8'
 
