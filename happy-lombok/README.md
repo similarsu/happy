@@ -50,3 +50,9 @@ val example = new ArrayList<String>();
 ```
 final ArrayList<String> example = new ArrayList<String>();
 ```
+
+### var
+
+```
+与val相似，仅不带final
+```
