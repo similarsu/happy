@@ -56,3 +56,34 @@ final ArrayList<String> example = new ArrayList<String>();
 ```
 与val相似，仅不带final
 ```
+
+## log
+
+### @SLF4J
+
+**build.gradle**
+
+```
+compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+```
+
+**注意**
+
+```
+可通过参数topic修改名称，默认为class type
+如果log字段已经存在, 代码不会自动生成。
+```
+
+**source**
+
+```
+@Slf4j
+public class SLF4JExample {
+}
+```
+
+**compile**
+
+```
+private static final Logger log = LoggerFactory.getLogger(SLF4JExample.class);
+```
