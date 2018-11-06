@@ -3,4 +3,6 @@ include 'happy-concurrency'
 include 'happy-core'
 include 'happy-jdk8'
 include 'happy-apache'
+include 'happy-nio'
+include 'happy-lombok'
 
