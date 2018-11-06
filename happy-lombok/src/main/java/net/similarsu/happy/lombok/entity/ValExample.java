@@ -23,4 +23,14 @@ public class ValExample {
       System.out.printf("%d: %s\n", entry.getKey(), entry.getValue());
     }
   }
+
+  /**
+   * error
+   * @return
+   */
+  /*public int example3(){
+    val num = 1;
+    num =2 ;
+    return num;
+  }*/
 }
