@@ -87,3 +87,49 @@ public class SLF4JExample {
 ```
 private static final Logger log = LoggerFactory.getLogger(SLF4JExample.class);
 ```
+
+## delombok
+
+```
+将含有lomok相关的代码，转换为正常的代码
+```
+**使用**
+
+```
+plugins {
+    id 'java'
+    id 'net.ltgt.apt' version '0.10'
+    id 'io.franzbecker.gradle-lombok' version '1.14'
+}
+
+import io.franzbecker.gradle.lombok.task.DelombokTask
+
+task delombok(type: DelombokTask, dependsOn: compileJava) {
+    group = 'lombok'
+    ext.outputDir = file("$buildDir/delombok")
+    outputs.dir(outputDir)
+    sourceSets.main.java.srcDirs.each {
+        inputs.dir(it)
+        args(it, "-d", outputDir)
+    }
+    doFirst {
+        outputDir.deleteDir()
+    }
+}
+
+task delombokHelp(type: DelombokTask) {
+    group = 'lombok'
+    args "--help"
+}
+
+javadoc {
+    dependsOn delombok
+    source = delombok.outputDir
+    failOnError = false
+    options{
+        docEncoding 'utf-8'
+        charSet 'utf-8'
+    }
+}
+```
+
