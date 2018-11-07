@@ -5,4 +5,5 @@ include 'happy-jdk8'
 include 'happy-apache'
 include 'happy-nio'
 include 'happy-lombok'
+include 'happy-jpa'
 
