@@ -3,22 +3,15 @@ package net.similarsu.happyjpa.entity;
 import javax.persistence.*;
 
 @Entity
-public class Student {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Student extends Id{
+
     @Column(name = "name", length = 20, nullable = false)
     private String name;
     @Column(name = "age" , length = 3)
     private int age;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @ManyToOne
+    @JoinColumn(name = "c_id")
+    private Classroom classroom;
 
     public String getName() {
         return name;
@@ -36,12 +29,11 @@ public class Student {
         this.age = age;
     }
 
-    @Override
-    public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                '}';
+    public Classroom getClassroom() {
+        return classroom;
+    }
+
+    public void setClassroom(Classroom classroom) {
+        this.classroom = classroom;
     }
 }
