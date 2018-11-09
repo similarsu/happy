@@ -3,6 +3,7 @@ package net.similarsu.happyjpa.repository;
 import net.similarsu.happyjpa.HappyJpaApplicationTests;
 import net.similarsu.happyjpa.entity.Classroom;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
@@ -27,6 +28,12 @@ public class ClassroomRepositoryTest extends HappyJpaApplicationTests {
             });
         });
         classroomRepository.saveAll(classroomList);
+    }
+
+    @Test
+    public void findAll(){
+        List<Classroom> classroomList=classroomRepository.findAll();
+        Assertions.assertEquals(classroomList.size(),72);
     }
 
 }
