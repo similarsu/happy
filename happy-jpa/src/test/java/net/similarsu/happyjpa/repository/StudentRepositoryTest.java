@@ -5,6 +5,7 @@ import net.similarsu.happyjpa.entity.Classroom;
 import net.similarsu.happyjpa.entity.Student;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,6 +72,15 @@ public class StudentRepositoryTest extends HappyJpaApplicationTests {
             });
         });
 
+    }
+
+    @Test
+    public void findByClassroom_nameAndAgeBetween(){
+        String className = "1年1班";
+        int minAge = 12;
+        int maxAge = 15;
+        List<Student> studentList= studentRepository.findByClassroom_nameAndAgeBetween(className, minAge ,maxAge);
+        Assertions.assertNotEquals(studentList.size(),0);
     }
 
     private int toRandom(int max){
