@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import java.util.ArrayList;
@@ -23,7 +22,7 @@ public class ClassroomRepositoryTest extends HappyJpaApplicationTests {
     private int pageNo = 1;
     private int pageSize = 10;
     private int totalCount = 72;
-
+    private int perCount = 12;
 
     @Test
     public void saveAll(){
@@ -62,5 +61,34 @@ public class ClassroomRepositoryTest extends HappyJpaApplicationTests {
             Assertions.assertEquals(classroomPage.getContent().size(),pageSize);
         });
     }
+
+    @Test
+    public void findByName(){
+        String name = "1年1班";
+        Classroom classroom = classroomRepository.findByName(name);
+        Assertions.assertNotNull(classroom);
+    }
+
+    @Test
+    public void findByNameLike(){
+        String name = "1年%";
+        List<Classroom> classroomList = classroomRepository.findByNameLike(name);
+        Assertions.assertEquals(perCount, classroomList.size());
+    }
+
+    @Test
+    public void findByOrderByNameDesc(){
+        String name = "1年%";
+        List<Classroom> classroomList = classroomRepository.findByNameLikeOrderByNameDesc(name);
+        Assertions.assertEquals(perCount, classroomList.size());
+    }
+
+    @Test
+    public void findDistrictByNameLike(){
+        String name = "1年%";
+        List<Classroom> classroomList = classroomRepository.findDistinctByNameLike(name);
+        Assertions.assertEquals(perCount, classroomList.size());
+    }
+
 
 }
