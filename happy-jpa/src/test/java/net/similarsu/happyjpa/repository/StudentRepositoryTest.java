@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,6 +81,24 @@ public class StudentRepositoryTest extends HappyJpaApplicationTests {
         int maxAge = 15;
         List<Student> studentList= studentRepository.findByClassroom_nameAndAgeBetween(className, minAge ,maxAge);
         Assertions.assertNotEquals(studentList.size(),0);
+    }
+
+    @Test
+    public void findByName(){
+        String name = nameList.get(toRandom(nameList.size()));
+        Page<Student> studentPage = studentRepository.findByName(name, PageRequest.of(1,10,Sort.by(Sort.Order.asc("age"))));
+        Assertions.assertAll(()->{
+            Assertions.assertNotNull(studentPage.getContent().size());
+        });
+    }
+
+    @Test
+    public void findByAge(){
+        int age = ageList.get(toRandom(ageList.size()));
+        Slice<Student> studentPage = studentRepository.findByAge(age, PageRequest.of(1,10,Sort.by(Sort.Order.asc("age"))));
+        Assertions.assertAll(()->{
+            Assertions.assertNotNull(studentPage.getContent().size());
+        });
     }
 
     private int toRandom(int max){
