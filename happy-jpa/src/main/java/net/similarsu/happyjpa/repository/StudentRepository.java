@@ -51,4 +51,35 @@ public interface StudentRepository extends JpaRepository<Student, Long>{
      * @return
      */
     Slice<Student> findByAge(int age, Pageable pageable);
+
+    /**
+     * select
+     * student0_.id as id1_1_, student0_.age as age2_1_, student0_.c_id as c_id4_1_, student0_.name as name3_1_
+     * from
+     * student student0_
+     * order by student0_.age asc limit ?
+     * @return
+     */
+    Student findFirstByOrderByAgeAsc();
+
+    /**
+     * select
+     * student0_.id as id1_1_, student0_.age as age2_1_, student0_.c_id as c_id4_1_, student0_.name as name3_1_
+     * from
+     * student student0_
+     * order by student0_.age asc limit ?
+     * @return
+     */
+    Student findTopByOrderByAgeAsc();
+
+    /**
+     * select
+     * student0_.id as id1_1_, student0_.age as age2_1_, student0_.c_id as c_id4_1_, student0_.name as name3_1_
+     * from
+     * student student0_
+     * order by student0_.age asc
+     * limit ?
+     * @return
+     */
+    List<Student> findFirst10ByOrderByAgeAsc();
 }

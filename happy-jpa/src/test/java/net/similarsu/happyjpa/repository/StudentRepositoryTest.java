@@ -101,6 +101,24 @@ public class StudentRepositoryTest extends HappyJpaApplicationTests {
         });
     }
 
+    @Test
+    public void findFirstByOrderByAgeAsc(){
+        Student student = studentRepository.findFirstByOrderByAgeAsc();
+        Assertions.assertNotNull(student);
+    }
+
+    @Test
+    public void findTopByOrderByAgeAsc(){
+        Student student = studentRepository.findTopByOrderByAgeAsc();
+        Assertions.assertNotNull(student);
+    }
+
+    @Test
+    public void findFirst10ByOrderByAgeAsc(){
+        List<Student> studentList = studentRepository.findFirst10ByOrderByAgeAsc();
+        Assertions.assertEquals(10, studentList.size());
+    }
+
     private int toRandom(int max){
         return new Random().nextInt(max);
     }

@@ -17,3 +17,35 @@ CREATE：to remove a given set of well known prefixes from the method name and p
 USE_DECLARED_QUERY：tries to find a declared query and throws an exception if cannot find one
 CREATE_IF_NOT_FOUND:combines CREATE and USE_DECLARED_QUERY. It looks up a declared query first, and, if no declared query is found, it creates a custom method name-based query
 ```
+
+## Limiting Query Results
+
+**使用**
+
+```
+Top or First
+```
+
+**demo**
+
+```
+User findFirstByOrderByLastnameAsc();
+
+User findTopByOrderByAgeDesc();
+
+Page<User> queryFirst10ByLastname(String lastname, Pageable pageable);
+
+Slice<User> findTop3ByLastname(String lastname, Pageable pageable);
+
+List<User> findFirst10ByLastname(String lastname, Sort sort);
+
+List<User> findTop10ByLastname(String lastname, Pageable pageable);
+```
+
+**注**
+
+```
+The limiting expressions also support the Distinct keyword.
+Also, for the queries limiting the result set to one instance, wrapping the result into with the Optional keyword is supported.
+If pagination or slicing is applied to a limiting query pagination (and the calculation of the number of pages available), it is applied within the limited result.
+```
