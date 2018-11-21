@@ -3,16 +3,11 @@ package net.similarsu.happyjpa.repository;
 import net.similarsu.happyjpa.HappyJpaApplicationTests;
 import net.similarsu.happyjpa.entity.Classroom;
 import net.similarsu.happyjpa.entity.Student;
-import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Slice;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +24,8 @@ public class StudentRepositoryTest extends HappyJpaApplicationTests {
     private List<String> nameList = new ArrayList<>();
 
     private List<Integer> ageList = new ArrayList<>();
+
+    private List<String> countryList = new ArrayList<>();
 
     @BeforeEach
     public void setUp(){
@@ -59,6 +56,18 @@ public class StudentRepositoryTest extends HappyJpaApplicationTests {
         ageList.add(12);
         ageList.add(13);
         ageList.add(14);
+
+        countryList.add("鹿城区");
+        countryList.add("龙湾区");
+        countryList.add("瓯海区");
+        countryList.add("洞头区");
+        countryList.add("永嘉县");
+        countryList.add("平阳县");
+        countryList.add("苍南县");
+        countryList.add("文成县");
+        countryList.add("泰顺县");
+        countryList.add("瑞安市");
+        countryList.add("乐清市");
     }
 
     @Test
@@ -70,6 +79,7 @@ public class StudentRepositoryTest extends HappyJpaApplicationTests {
                 Student student = new Student();
                 student.setName(nameList.get(toRandom(nameList.size())));
                 student.setAge(ageList.get(toRandom(ageList.size())));
+                student.setCountry(countryList.get(toRandom(countryList.size())));
                 student.setClassroom(classroom);
                 studentRepository.save(student);
             });
@@ -121,6 +131,8 @@ public class StudentRepositoryTest extends HappyJpaApplicationTests {
         List<Student> studentList = studentRepository.findFirst10ByOrderByAgeAsc();
         Assertions.assertEquals(10, studentList.size());
     }
+
+
 
     private int toRandom(int max){
         return new Random().nextInt(max);
