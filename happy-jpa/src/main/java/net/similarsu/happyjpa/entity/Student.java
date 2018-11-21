@@ -8,7 +8,7 @@ public class Student extends Id{
     @Column(name = "name", length = 20, nullable = false)
     private String name;
     @Column(name = "age" , length = 3)
-    private int age;
+    private Integer age;
     @ManyToOne
     @JoinColumn(name = "c_id")
     private Classroom classroom;
@@ -21,11 +21,11 @@ public class Student extends Id{
         this.name = name;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
