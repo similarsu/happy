@@ -3,13 +3,16 @@ package net.similarsu.happyjpa.repository;
 import net.similarsu.happyjpa.HappyJpaApplicationTests;
 import net.similarsu.happyjpa.entity.Classroom;
 import net.similarsu.happyjpa.entity.Student;
-import org.junit.Before;
-import org.junit.Test;
+import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.Sort;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +30,7 @@ public class StudentRepositoryTest extends HappyJpaApplicationTests {
 
     private List<Integer> ageList = new ArrayList<>();
 
-    @Before
+    @BeforeEach
     public void setUp(){
         nameList.add("杨朝来");
         nameList.add("蒋平");
