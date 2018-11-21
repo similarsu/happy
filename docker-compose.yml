@@ -2,6 +2,8 @@ version: '3'
 services:
   db:
     build: db/
+    volumes:
+      - db:/var/lib/mysql
     ports:
     - "3306:3306"
     environment:
@@ -11,3 +13,6 @@ services:
       MYSQL_PASSWORD: dev
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     container_name: happy-jpa
+
+volumes:
+  db:
