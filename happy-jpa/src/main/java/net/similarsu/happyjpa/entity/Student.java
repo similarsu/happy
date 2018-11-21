@@ -7,8 +7,10 @@ public class Student extends Id{
 
     @Column(name = "name", length = 20, nullable = false)
     private String name;
-    @Column(name = "age" , length = 3)
+    @Column(name = "age" , length = 3, nullable = false)
     private Integer age;
+    @Column(name = "country", nullable = false)
+    private String country;
     @ManyToOne
     @JoinColumn(name = "c_id")
     private Classroom classroom;
@@ -35,5 +37,13 @@ public class Student extends Id{
 
     public void setClassroom(Classroom classroom) {
         this.classroom = classroom;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 }
