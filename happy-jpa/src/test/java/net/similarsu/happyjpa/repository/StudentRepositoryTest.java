@@ -142,6 +142,36 @@ public class StudentRepositoryTest extends HappyJpaApplicationTests {
         Assertions.assertNotEquals(studentList.size(), 0);
     }
 
+    /**
+     * matching:
+     * select
+     * student0_.id as id1_1_, student0_.age as age2_1_, student0_.c_id as c_id5_1_, student0_.country as country3_1_, student0_.name as name4_1_
+     * from student student0_
+     * where student0_.name=? and student0_.country=?
+     *
+     * matchingAll:
+     * select
+     * student0_.id as id1_1_, student0_.age as age2_1_, student0_.c_id as c_id5_1_, student0_.country as country3_1_, student0_.name as name4_1_
+     * from student student0_
+     * where student0_.name=? and student0_.country=?
+     *
+     * matchingAny:
+     * select
+     * student0_.id as id1_1_, student0_.age as age2_1_, student0_.c_id as c_id5_1_, student0_.country as country3_1_, student0_.name as name4_1_
+     * from
+     * student student0_
+     * where student0_.name=? or student0_.country=?
+     */
+    @Test
+    public void findByNameExampleMatch(){
+        Student student = new Student();
+        student.setName(nameList.get(toRandom(nameList.size())));
+        student.setCountry(countryList.get(toRandom(countryList.size())));
+        Example<Student> example = Example.of(student, ExampleMatcher.matchingAny());
+        List<Student> studentList = studentRepository.findAll(example);
+        Assertions.assertNotEquals(studentList.size(), 0);
+    }
+
     private int toRandom(int max){
         return new Random().nextInt(max);
     }

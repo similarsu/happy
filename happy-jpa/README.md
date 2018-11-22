@@ -68,3 +68,13 @@ student.setName(nameList.get(toRandom(nameList.size())));
 student.setCountry(countryList.get(toRandom(countryList.size())));
 Example<Student> example = Example.of(student);
 ```
+
+**复杂使用**
+
+### matching
+
+```
+matching: and
+matchingAll: and
+matchingAny: or
+```
