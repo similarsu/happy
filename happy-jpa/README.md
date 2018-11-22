@@ -49,3 +49,22 @@ The limiting expressions also support the Distinct keyword.
 Also, for the queries limiting the result set to one instance, wrapping the result into with the Optional keyword is supported.
 If pagination or slicing is applied to a limiting query pagination (and the calculation of the number of pages available), it is applied within the limited result.
 ```
+
+## Query by Example
+
+**使用**
+
+```
+public interface StudentRepository extends QueryByExampleExecutor<Student>{
+
+}
+```
+
+**简单使用**
+
+```
+Student student = new Student();
+student.setName(nameList.get(toRandom(nameList.size())));
+student.setCountry(countryList.get(toRandom(countryList.size())));
+Example<Student> example = Example.of(student);
+```

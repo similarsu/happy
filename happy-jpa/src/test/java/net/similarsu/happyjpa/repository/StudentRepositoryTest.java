@@ -132,7 +132,15 @@ public class StudentRepositoryTest extends HappyJpaApplicationTests {
         Assertions.assertEquals(10, studentList.size());
     }
 
-
+    @Test
+    public void findByNameSimpleExample(){
+        Student student = new Student();
+        student.setName(nameList.get(toRandom(nameList.size())));
+        student.setCountry(countryList.get(toRandom(countryList.size())));
+        Example<Student> example = Example.of(student);
+        List<Student> studentList = studentRepository.findAll(example);
+        Assertions.assertNotEquals(studentList.size(), 0);
+    }
 
     private int toRandom(int max){
         return new Random().nextInt(max);
