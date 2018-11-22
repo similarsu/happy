@@ -78,3 +78,9 @@ matching: and
 matchingAll: and
 matchingAny: or
 ```
+
+### withMatcher
+
+```
+单个配置
+```
